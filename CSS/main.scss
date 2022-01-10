@@ -2,11 +2,15 @@
 $primaryColor: #1c202b;
 $terciaryColor: #FFFFFF;
 
+.hand{
+    cursor: pointer;
+}
+
 //Function
-@mixin flex($justify, $align){
+@mixin flex($justify, $align, $row){
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: $row;
     align-items: $align;
     justify-content: $justify;
 }
@@ -27,11 +31,13 @@ $terciaryColor: #FFFFFF;
 }
 
 body{
-    @include flex(center, center);
+    @include flex(center, center, column);
 
     background-color: $primaryColor;
     width: 100vw;
     height: 100vh;
+
+    color: $terciaryColor;
 }
 
 //Game
@@ -39,10 +45,12 @@ body{
     width: 60vh;
     height: 60vh;
 
+    margin: 50px 0px 50px 0px;
+
     .line{
         $size: 33.3%;
 
-        @include flex(none, center);
+        @include flex(none, center, row);
         
         width: 100%;
         height: $size;
@@ -64,6 +72,33 @@ body{
 
         &:nth-of-type(2){
             @include borderGame(5px, 0px, 5px, 0px);
+        }
+    }
+}
+
+//Buttons
+#buttons{
+    @include flex(center, center, column);
+
+    width: 60vh;
+
+    button{
+        background-color: transparent;
+        width: 60%;
+        height: 40px;
+
+        border-color: $terciaryColor;
+        border-style: solid;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+        color: $terciaryColor;
+
+        &:hover{
+            background-color: $terciaryColor;
+            color: $primaryColor;
         }
     }
 }
