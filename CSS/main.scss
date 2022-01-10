@@ -1,6 +1,20 @@
+$primaryColor: #1c202b;
+
 *{
     margin: 0px;
     padding: 0px;
 
     box-sizing: border-box;
+}
+
+@mixin flex(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background-color: $primaryColor;
+
+    @include flex();
 }
