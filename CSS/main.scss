@@ -2,7 +2,7 @@
 $primaryColor: #1c202b;
 $terciaryColor: #FFFFFF;
 
-.hand{
+.hand:hover{
     cursor: pointer;
 }
 
@@ -32,7 +32,6 @@ $terciaryColor: #FFFFFF;
 
 body{
     @include flex(center, center, column);
-
     background-color: $primaryColor;
     width: 100vw;
     height: 100vh;
@@ -48,18 +47,20 @@ body{
     margin: 50px 0px 50px 0px;
 
     .line{
-        $size: 33.3%;
-
         @include flex(none, center, row);
+        $size: 33.3%;
         
         width: 100%;
         height: $size;
 
         .block{
+            @include flex(center, center, column);
             width: $size;
             height: 100%;
 
-            padding: 20px;
+            h1{
+                font-size: 7em;
+            }
 
             &:nth-of-type(1){
                 @include borderGame(0px, 5px, 0px, 0px);
