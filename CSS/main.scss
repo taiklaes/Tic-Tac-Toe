@@ -1,5 +1,24 @@
+//Var
 $primaryColor: #1c202b;
+$terciaryColor: #FFFFFF;
 
+//Function
+@mixin flex($justify, $align){
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin borderGame($top, $right, $bot, $left){
+    border-color: $terciaryColor;
+    border-style: solid;
+
+    border-width: $top $right $bot $left;
+}
+
+//General
 *{
     margin: 0px;
     padding: 0px;
@@ -7,14 +26,44 @@ $primaryColor: #1c202b;
     box-sizing: border-box;
 }
 
-@mixin flex(){
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body{
+    @include flex(center, center);
+
+    background-color: $primaryColor;
+    width: 100vw;
+    height: 100vh;
 }
 
-body{
-    background-color: $primaryColor;
+//Game
+#area{
+    width: 60vh;
+    height: 60vh;
 
-    @include flex();
+    .line{
+        $size: 33.3%;
+
+        @include flex(none, center);
+        
+        width: 100%;
+        height: $size;
+
+        .block{
+            width: $size;
+            height: 100%;
+
+            padding: 20px;
+
+            &:nth-of-type(1){
+                @include borderGame(0px, 5px, 0px, 0px);
+            }
+
+            &:nth-of-type(3){
+                @include borderGame(0px, 0px, 0px, 5px);
+            }
+        }
+
+        &:nth-of-type(2){
+            @include borderGame(5px, 0px, 5px, 0px);
+        }
+    }
 }

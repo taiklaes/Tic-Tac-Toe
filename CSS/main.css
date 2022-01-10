@@ -5,8 +5,46 @@
 }
 
 body {
-  background-color: #1c202b;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  background-color: #1c202b;
+  width: 100vw;
+  height: 100vh;
+}
+
+#area {
+  width: 60vh;
+  height: 60vh;
+}
+#area .line {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: none;
+  width: 100%;
+  height: 33.3%;
+}
+#area .line .block {
+  width: 33.3%;
+  height: 100%;
+  padding: 20px;
+}
+#area .line .block:nth-of-type(1) {
+  border-color: #FFFFFF;
+  border-style: solid;
+  border-width: 0px 5px 0px 0px;
+}
+#area .line .block:nth-of-type(3) {
+  border-color: #FFFFFF;
+  border-style: solid;
+  border-width: 0px 0px 0px 5px;
+}
+#area .line:nth-of-type(2) {
+  border-color: #FFFFFF;
+  border-style: solid;
+  border-width: 5px 0px 5px 0px;
 }/*# sourceMappingURL=main.css.map */
