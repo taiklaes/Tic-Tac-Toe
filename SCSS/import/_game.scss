@@ -1,11 +1,12 @@
 //Import
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap');
 @import 'colors';
 @import 'mixin';
 
 //Body
 #area{
-    width: 60vh;
-    height: 60vh;
+    width: 55vh;
+    height: 55vh;
 
     margin: 50px 0px 50px 0px;
 
@@ -26,6 +27,8 @@
             width: 33.3%;
             height: 100%;
 
+            font-family: 'Be Vietnam Pro', sans-serif;
+
             .player-1{
                 color: $primaryColor;
             }
@@ -35,7 +38,7 @@
             }
 
             h1{
-                font-size: 7em;
+                font-size: 6em;
             }
 
             &:nth-of-type(1){
