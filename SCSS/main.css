@@ -79,6 +79,9 @@ body .player-1 {
 body .player-2 {
   color: #8338ec;
 }
+body .off {
+  display: none;
+}
 
 #buttons {
   display: flex;
