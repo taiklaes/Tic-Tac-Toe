@@ -1,26 +1,7 @@
-//Var
-$primaryColor: #1c202b;
-$terciaryColor: #FFFFFF;
-
-.hand:hover{
-    cursor: pointer;
-}
-
-//Function
-@mixin flex($justify, $align, $row){
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: $row;
-    align-items: $align;
-    justify-content: $justify;
-}
-
-@mixin borderGame($top, $right, $bot, $left){
-    border-color: $terciaryColor;
-    border-style: solid;
-
-    border-width: $top $right $bot $left;
-}
+//Import
+@import 'import/colors';
+@import 'import/mixin';
+@import 'import/game';
 
 //General
 *{
@@ -32,55 +13,20 @@ $terciaryColor: #FFFFFF;
 
 body{
     @include flex(center, center, column);
-    background-color: $primaryColor;
+    background-color: $backgroundColor;
     width: 100vw;
     height: 100vh;
 
-    color: $terciaryColor;
-}
+    color: $textColor;
 
-//Game
-#area{
-    width: 60vh;
-    height: 60vh;
-
-    margin: 50px 0px 50px 0px;
-
-    .line{
-        @include flex(none, center, row);
-        $size: 33.3%;
-        
-        width: 100%;
-        height: $size;
-
-        .block{
-            @include flex(center, center, column);
-            width: $size;
-            height: 100%;
-
-            h1{
-                font-size: 7em;
-            }
-
-            &:nth-of-type(1){
-                @include borderGame(0px, 5px, 0px, 0px);
-            }
-
-            &:nth-of-type(3){
-                @include borderGame(0px, 0px, 0px, 5px);
-            }
-        }
-
-        &:nth-of-type(2){
-            @include borderGame(5px, 0px, 5px, 0px);
-        }
+    .hand:hover{
+        cursor: pointer;
     }
 }
 
 //Buttons
 #buttons{
     @include flex(center, center, column);
-
     width: 60vh;
 
     button{
@@ -88,18 +34,18 @@ body{
         width: 60%;
         height: 40px;
 
-        border-color: $terciaryColor;
         border-style: solid;
+        border-color: $textColor;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
 
-        color: $terciaryColor;
+        color: $textColor;
 
         &:hover{
-            background-color: $terciaryColor;
-            color: $primaryColor;
+            background-color: $textColor;
+            color: $backgroundColor;
         }
     }
 }
