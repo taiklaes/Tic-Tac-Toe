@@ -17,7 +17,7 @@ body{
     width: 100vw;
     height: 100vh;
 
-    color: $textColor;
+    color: $neutralColor;
 
     .hand:hover{
         cursor: pointer;
@@ -35,16 +35,16 @@ body{
         height: 40px;
 
         border-style: solid;
-        border-color: $textColor;
+        border-color: $neutralColor;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
 
-        color: $textColor;
+        color: $neutralColor;
 
         &:hover{
-            background-color: $textColor;
+            background-color: $neutralColor;
             color: $backgroundColor;
         }
     }

@@ -22,10 +22,10 @@
   height: 100%;
 }
 #area .line .block .player-1 {
-  color: purple;
+  color: #f72585;
 }
 #area .line .block .player-2 {
-  color: orange;
+  color: #8338ec;
 }
 #area .line .block h1 {
   font-size: 7em;

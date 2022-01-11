@@ -10,7 +10,7 @@
     margin: 50px 0px 50px 0px;
 
     @mixin borderGame($top, $right, $bot, $left){
-        border-color: $textColor;
+        border-color: $neutralColor;
         border-style: solid;
     
         border-width: $top $right $bot $left;
