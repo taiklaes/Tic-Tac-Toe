@@ -24,12 +24,6 @@
   height: 100%;
   font-family: "Be Vietnam Pro", sans-serif;
 }
-#area .line .block .player-1 {
-  color: #f72585;
-}
-#area .line .block .player-2 {
-  color: #8338ec;
-}
 #area .line .block h1 {
   font-size: 6em;
 }
@@ -78,6 +72,12 @@ body {
 }
 body .hand:hover {
   cursor: pointer;
+}
+body .player-1 {
+  color: #f72585;
+}
+body .player-2 {
+  color: #8338ec;
 }
 
 #buttons {

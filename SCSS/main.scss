@@ -30,6 +30,14 @@ body{
     .hand:hover{
         cursor: pointer;
     }
+    
+    .player-1{
+        color: $primaryColor;
+    }
+
+    .player-2{
+        color: $secundaryColor;
+    }
 }
 
 //Buttons
