@@ -93,29 +93,34 @@ $(function(){
     function win(){
         console.log("Ganhou: " + player);
         state = false;
+
+        clear(false);
     }
 
     //The end
     $("#end").click(function(){
         state = false;
-        clear();
+        clear(true);
 
         $("#end").addClass("off");
         $("#start").removeClass("off");
     });
 
     //Clear
-    function clear(){
-        $("#title").html("Hash Game");
+    function clear(pst){
+        $("#title").html("# Hash Game");
 
         for(let x = 0; x < blocks.length; x++){
             for(let y = 0; y < blocks.length; y++){
                 let id = "#" + blocks[x][y];
                 positions[x][y] = "";
 
-                $(id).html("");
                 $(id).unbind("click");
                 $(id).removeClass("hand");
+
+                if(pst == true){
+                    $(id).html("");
+                }
             }
         }
     }
