@@ -1,4 +1,48 @@
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&family=Raleway:wght@300&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+::-moz-selection {
+  background-color: transparent;
+}
+
+::selection {
+  background-color: transparent;
+}
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c202b;
+  width: 100vw;
+  height: 100vh;
+  color: #ffffff;
+  font-family: "Raleway", sans-serif;
+  cursor: default;
+}
+
+.hand:hover {
+  cursor: pointer;
+}
+
+.player-1 {
+  color: #f72585;
+}
+
+.player-2 {
+  color: #8338ec;
+}
+
+.off {
+  display: none;
+}
+
 #area {
   width: 55vh;
   height: 55vh;
@@ -40,46 +84,6 @@
   border-color: #ffffff;
   border-style: solid;
   border-width: 5px 0px 5px 0px;
-}
-
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
-::-moz-selection {
-  background-color: transparent;
-}
-
-::selection {
-  background-color: transparent;
-}
-
-body {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #1c202b;
-  width: 100vw;
-  height: 100vh;
-  color: #ffffff;
-  font-family: "Raleway", sans-serif;
-  cursor: default;
-}
-body .hand:hover {
-  cursor: pointer;
-}
-body .player-1 {
-  color: #f72585;
-}
-body .player-2 {
-  color: #8338ec;
-}
-body .off {
-  display: none;
 }
 
 #buttons {

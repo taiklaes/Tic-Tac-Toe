@@ -1,0 +1,41 @@
+//General
+*{
+    margin: 0px;
+    padding: 0px;
+
+    box-sizing: border-box;
+}
+
+::selection{
+    background-color: transparent;
+}
+
+//Body
+body{
+    @include flex(center, center, column);
+    background-color: $backgroundColor;
+    width: 100vw;
+    height: 100vh;
+
+    color: $neutralColor;
+    font-family: 'Raleway', sans-serif;
+
+    cursor: default;
+}
+
+//Class
+.hand:hover{
+    cursor: pointer;
+}
+
+.player-1{
+    color: $primaryColor;
+}
+
+.player-2{
+    color: $secundaryColor;
+}
+
+.off{
+    display: none;
+}
