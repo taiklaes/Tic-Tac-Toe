@@ -46,7 +46,7 @@ body {
 #area {
   width: 55vh;
   height: 55vh;
-  margin: 50px 0px 50px 0px;
+  margin: 5% 0px 5% 0px;
 }
 #area .line {
   display: flex;
