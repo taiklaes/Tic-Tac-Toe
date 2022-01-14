@@ -5,3 +5,12 @@
     align-items: $align;
     justify-content: $justify;
 }
+
+@mixin roundedBorder(){
+    $size: 30px;
+    
+    border-top-left-radius: $size;
+    border-top-right-radius: $size;
+    border-bottom-left-radius: $size;
+    border-bottom-right-radius: $size;
+}

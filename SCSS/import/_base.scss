@@ -12,8 +12,7 @@
 
 //Body
 body{
-    @include flex(center, center, column);
-    background-color: $backgroundColor;
+    background-color: $darkColor;
     width: 100vw;
     height: 100vh;
 
@@ -21,6 +20,8 @@ body{
     font-family: 'Raleway', sans-serif;
 
     cursor: default;
+
+    @include flex(center, center, column);
 }
 
 //Class
@@ -37,5 +38,5 @@ body{
 }
 
 .off{
-    display: none;
+    display: none !important;
 }

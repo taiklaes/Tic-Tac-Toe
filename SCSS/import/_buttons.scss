@@ -1,5 +1,4 @@
 #buttons{
-    @include flex(center, center, column);
     width: 55vh;
 
     button{
@@ -7,22 +6,22 @@
         width: 100%;
         height: 40px;
 
-        border-style: solid;
-        border-color: $neutralColor;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-
         font-size: 1.3em;
         color: $neutralColor;
         font-family: 'Raleway', sans-serif;
+
+        border-style: solid;
+        border-color: $neutralColor;
 
         transition: background-color 0.5s, color 0.5s;
 
         &:hover{
             background-color: $neutralColor;
-            color: $backgroundColor;
+            color: $darkColor;
         }
+
+        @include roundedBorder();
     }
+    
+    @include flex(center, center, column);
 }
