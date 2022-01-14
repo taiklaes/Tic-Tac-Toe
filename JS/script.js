@@ -20,7 +20,7 @@ $(function(){
 
         for(let x = 0; x < blocks.length; x++){
             for(let y = 0; y < blocks.length; y++){
-                let id = "#" + blocks[x][y];
+                let id = `#${blocks[x][y]}`;
 
                 $(id).click(function(){
                     if(positions[x][y] == "" & state == true){
@@ -82,16 +82,16 @@ $(function(){
 
     //Check the block
     function mark(id, num, pl, newNum, newPlayer){
-        $("#title").html("Player <b class='player-" + num + "'>" + pl + "</b> it's your time");
-        $(id).html("<h1>" + player + "</h1>");
-        $(id + " h1").addClass("player-" + newNum);
+        $("#title").html(`Player <strong class="player-${num}">${pl}</strong> it's your time`);
+        $(id).html(`<h1>${player}</h1>`);
+        $(`${id} h1`).addClass(`player-${newNum}`);
 
         player = newPlayer;
     }
 
     //Winner
     function win(){
-        console.log("Ganhou: " + player);
+        console.log(`Ganhou: ${player}`);
         state = false;
 
         clear(false);
@@ -112,7 +112,7 @@ $(function(){
 
         for(let x = 0; x < blocks.length; x++){
             for(let y = 0; y < blocks.length; y++){
-                let id = "#" + blocks[x][y];
+                let id = `#${blocks[x][y]}`;
                 positions[x][y] = "";
 
                 $(id).unbind("click");
