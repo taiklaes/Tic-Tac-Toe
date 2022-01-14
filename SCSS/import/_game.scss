@@ -24,7 +24,11 @@
             font-family: 'Be Vietnam Pro', sans-serif;
 
             h1{
-                font-size: 6em;
+                font-size: 0em;
+
+                animation-name: show;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
             }
 
             &:nth-of-type(1){
@@ -33,6 +37,11 @@
 
             &:nth-of-type(3){
                 @include borderGame(0px, 0px, 0px, 5px);
+            }
+
+            @keyframes show {
+                0% {font-size: 0;}
+                100% {font-size: 6em;}
             }
         }
 
