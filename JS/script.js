@@ -91,10 +91,10 @@ $(function(){
 
     //Winner
     function win(){
-        console.log(`Ganhou: ${player}`);
-        state = false;
-
+        //console.log(`Ganhou: ${player}`);
+        //state = false;
         clear(false);
+        winScreen("50%", "20px", 0);
     }
 
     //The end
@@ -122,6 +122,26 @@ $(function(){
                     $(id).html("");
                 }
             }
+        }
+    }
+
+    //Disappear
+    $("#winBack").click(function(){
+        winScreen("0%", "0px", 400);
+    });
+
+    //Win Screen
+    function winScreen(widthVal, paddingVal, time){
+        $("#win").css("width", widthVal);
+        setTimeout(function(){
+            $("#win").css("padding", paddingVal);
+        }, time);
+
+        if(widthVal == "0%"){
+            $("#winBack").fadeOut();
+        }
+        else{
+            $("#winBack").fadeIn();
         }
     }
 });
