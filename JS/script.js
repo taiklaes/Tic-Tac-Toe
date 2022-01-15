@@ -1,7 +1,6 @@
 $(function(){
     //Var and Const
     let player = "";
-    let state = false;
     let positions = [["", "", ""], ["", "", ""], ["", "", ""]];
 
     const blocks = [
@@ -10,20 +9,21 @@ $(function(){
         ["C1", "C2", "C3"],
     ];
 
+    //Initiate
+    $("#winBack").fadeOut();
+
     //Start the game
     $("#start").click(function(){
         $("#title").html("The game is started!!! Player <b class='player-1'>One</b> it's your time");
         $("#start").addClass("off");
         $("#end").removeClass("off");
 
-        state = true;
-
         for(let x = 0; x < blocks.length; x++){
             for(let y = 0; y < blocks.length; y++){
                 let id = `#${blocks[x][y]}`;
 
                 $(id).click(function(){
-                    if(positions[x][y] == "" & state == true){
+                    if(positions[x][y] == ""){
                         positions[x][y] = player;
 
                         if(over() == true){
@@ -91,10 +91,8 @@ $(function(){
 
     //Winner
     function win(){
-        //console.log(`Ganhou: ${player}`);
-        //state = false;
-        clear(false);
         winScreen("50%", "20px", 0);
+        clear(false);
     }
 
     //The end
@@ -132,16 +130,21 @@ $(function(){
 
     //Win Screen
     function winScreen(widthVal, paddingVal, time){
-        $("#win").css("width", widthVal);
-        setTimeout(function(){
-            $("#win").css("padding", paddingVal);
-        }, time);
-
         if(widthVal == "0%"){
             $("#winBack").fadeOut();
+            
         }
         else{
             $("#winBack").fadeIn();
+            $("#win").removeClass("off");
         }
+
+        setTimeout(function(){
+            $("#win").css("width", widthVal);
+            
+            setTimeout(function(){
+                $("#win").css("padding", paddingVal);
+            }, time);            
+        }, time);
     }
 });
