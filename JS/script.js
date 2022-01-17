@@ -1,8 +1,7 @@
 $(function(){
     //Var and Const
-    let player = "";
+    const players = JSON.parse(`{"One":{"Id":"1", "Text":"X", "Next":"Two", "NextId":"2"}, "Two":{"Id":"2", "Text":"O", "Next":"One", "NextId":"1"}}`);
     let positions = [["", "", ""], ["", "", ""], ["", "", ""]];
-
     const blocks = [
         ["A1", "A2", "A3"],
         ["B1", "B2", "B3"],
@@ -14,6 +13,7 @@ $(function(){
 
     //Start the game
     $("#start").click(function(){
+        let playing = "One";
         $("#title").html("The game is started!!! Player <b class='player-1'>One</b> it's your time");
         $("#start").addClass("off");
         $("#end").removeClass("off");
@@ -24,55 +24,49 @@ $(function(){
 
                 $(id).click(function(){
                     if(positions[x][y] == ""){
-                        positions[x][y] = player;
+                        positions[x][y] = players[playing]["Text"];
 
-                        if(over() == true){
-                            win();
+                        if(itsOver(players[playing]["Text"]) == true){
+                            finish(playing, `Player <strong class="player-${players[playing]["Id"]}">${playing}</strong> you are the winner!!`);
                         }
-                        else if(over() == "tied"){
-                            console.log("We tied!");
+                        else if(itsOver(players[playing]["Text"]) == "tied"){
+                            finish(playing, `It tied but next time one of you wins!!`);
                         }
 
-                        switch(player){
-                            case "X":
-                                mark(id, "2", "Two", "1", "O");
-                                break;
-                        
-                            case "O":
-                                mark(id, "1", "One", "2", "X");
-                                break;
-                        }
+                        $("#title").html(`Player <strong class="player-${players[playing]["NextId"]}">${players[playing]["Next"]}</strong> it's your time!`);
+                        $(id).html(`<h1>${players[playing]["Text"]}</h1>`);
+                        $(`${id} h1`).addClass(`player-${players[playing]["Id"]}`);
+                
+                        playing = players[playing]["Next"];
 
                         $(id).removeClass("hand");
                     }
                 }).addClass("hand");
             }
         }
-        
-        player = "X";
     });
 
     //It's over?
-    function over(){
-        let num = 0;
+    function itsOver(playingText){
+        let marked = 0;
 
-        if(positions[0][0] == player & positions[1][1] == player & positions[2][2] == player | positions[0][2] == player & positions[1][1] == player & positions[2][0] == player){
+        if(positions[0][0] == playingText & positions[1][1] == playingText & positions[2][2] == playingText | positions[0][2] == playingText & positions[1][1] == playingText & positions[2][0] == playingText){
             return true;
         }
 
         for(let i = 0; i < blocks.length; i++){
-            if(positions[i][0] == player & positions[i][1] == player & positions[i][2] == player | positions[0][i] == player & positions[1][i] == player & positions[2][i] == player){
+            if(positions[i][0] == playingText & positions[i][1] == playingText & positions[i][2] == playingText | positions[0][i] == playingText & positions[1][i] == playingText & positions[2][i] == playingText){
                 return true;
             }
 
             for(let y = 0; y < blocks.length; y++){
                 if(positions[i][y] != ""){
-                    num++;
+                    marked++;
                 }
             }
         }
 
-        if(num == 9){
+        if(marked == 9){
             return "tied";
         }
         else{
@@ -80,18 +74,38 @@ $(function(){
         }
     }
 
-    //Check the block
-    function mark(id, num, pl, newNum, newPlayer){
-        $("#title").html(`Player <strong class="player-${num}">${pl}</strong> it's your time`);
-        $(id).html(`<h1>${player}</h1>`);
-        $(`${id} h1`).addClass(`player-${newNum}`);
+    //Finish
+    function finish(playing, finishText){
+        let matches = new Array();
+        let one = 0;
+        let two = 0;
 
-        player = newPlayer;
-    }
+        if(localStorage.hasOwnProperty("matches")){
+            matches = JSON.parse(localStorage.getItem("matches"));
+        }
+    
+        matches.push({Winner: playing, Loser: players[playing]["Next"]});
+        localStorage.setItem("matches", JSON.stringify(matches));
 
-    //Winner
-    function win(){
-        winScreen("50%", "20px", 0);
+        for(let i = 0; i < matches.length; i++){
+            if(matches[i]["Winner"] == "One"){
+                one++;
+            }
+            else{
+                two++;
+            }
+        }
+
+        one = ((100 * one) / matches.length).toFixed(1);
+        two = ((100 * two) / matches.length).toFixed(1);
+
+        $("#finishTitle").html(finishText);        
+        $("#bar-1").css("width", one + "%");
+        $("#bar-2").css("width", two + "%");
+        $("#porcent-1").html(one + "%");
+        $("#porcent-2").html(two + "%");
+        $("#matchesPlayed").html("Games played: " + matches.length);
+        winScreen("50vw", "20px", 0);
         clear(false);
     }
 
