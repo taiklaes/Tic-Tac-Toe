@@ -1,8 +1,8 @@
 #winBack{
     background-color: rgba($darkColor, 0.45);
     backdrop-filter: blur(5px);
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 
     position: fixed;
     top: 0;
@@ -11,7 +11,7 @@
 
 #win{
     background-color: $neutralColor;
-    width: 0%;
+    width: 0vw;
     height: 100vh;
 
     padding: 0px;
@@ -26,28 +26,34 @@
     transition: width 0.5s;
 
     h1{
-        margin: 50px 0px 0px 0px;
+        margin: 5vh 0px 10vh 0px;
+    }
+
+    .title{
+        margin: 15vh 0px 0px 0px;
     }
 
     #rateArea{
         width: 100%;
 
-        h1:nth-of-type(1){
+        h1{
             width: 100%;
+
+            font-size: 1.5em;
         }
 
-        #text
-        {
+        #text{
             width: 20%;
-
-            text-align: left;
-            font-size: 0.8em;
+        }
+        
+        #porcents{
+            width: 10%;
         }
 
         #bars
         {
-            width: calc(80% - 20px);
-            margin: 0px 0px 0px 20px;
+            width: calc(70% - 20px);
+            margin: 0px 10px 0px 10px;
 
             div{
                 width: 100%;
