@@ -1,22 +1,20 @@
 $(function(){
-    //Var and Const
+    //#region Essentials
     const players = JSON.parse(`{"One":{"Id":"1", "Text":"X", "Next":"Two", "NextId":"2"}, "Two":{"Id":"2", "Text":"O", "Next":"One", "NextId":"1"}}`);
+    const blocks = [["A1", "A2", "A3"], ["B1", "B2", "B3"], ["C1", "C2", "C3"],];
     let positions = [["", "", ""], ["", "", ""], ["", "", ""]];
-    const blocks = [
-        ["A1", "A2", "A3"],
-        ["B1", "B2", "B3"],
-        ["C1", "C2", "C3"],
-    ];
 
-    //Initiate
     $("#winBack").fadeOut();
+    //#endregion
 
-    //Start the game
+
+    //#region Click Event: Start Button
     $("#start").click(function(){
         let playing = "One";
+
         $("#title").html("The game is started!!! Player <b class='player-1'>One</b> it's your time");
-        $("#start").addClass("off");
-        $("#end").removeClass("off");
+        $("#start").css("display", "none");
+        $("#end").css("display", "block");
 
         for(let x = 0; x < blocks.length; x++){
             for(let y = 0; y < blocks.length; y++){
@@ -30,23 +28,34 @@ $(function(){
                             finish(playing, `Player <strong class="player-${players[playing]["Id"]}">${playing}</strong> you are the winner!!`);
                         }
                         else if(itsOver(players[playing]["Text"]) == "tied"){
-                            finish(playing, `It tied but next time one of you wins!!`);
+                            finish(playing, `It tied but next time one of you will win!!`);
                         }
-
+            
                         $("#title").html(`Player <strong class="player-${players[playing]["NextId"]}">${players[playing]["Next"]}</strong> it's your time!`);
-                        $(id).html(`<h1>${players[playing]["Text"]}</h1>`);
+                        $(id).html(`<h1>${players[playing]["Text"]}</h1>`).css("cursor", "default");
                         $(`${id} h1`).addClass(`player-${players[playing]["Id"]}`);
-                
+            
                         playing = players[playing]["Next"];
-
-                        $(id).removeClass("hand");
                     }
-                }).addClass("hand");
+                }).css("cursor", "pointer");
             }
         }
     });
+    //#endregion
 
-    //It's over?
+    //#region Click Event: End Button
+    $("#end").click(function(){
+        $("#title").html("Tic-Tac-Toe");
+        $("#end").css("display", "none");
+        $("#start").css("display", "block");
+
+        areaUnbindClick();
+        areaClear();
+    });
+    //#endregion
+
+
+    //#region It's Over the match?
     function itsOver(playingText){
         let marked = 0;
 
@@ -73,12 +82,27 @@ $(function(){
             return false;
         }
     }
+    //#endregion
 
-    //Finish
+    //#region Finishing the match
     function finish(playing, finishText){
+        let matches = localMatches(playing), porcentage = calcPercentage(matches);
+
+        $("#finishTitle").html(finishText);
+        $("#bar-1").css("width", `${porcentage[0]}%`);
+        $("#bar-2").css("width", `${porcentage[1]}%`);
+        $("#porcent-1").html(`${porcentage[0]}%`);
+        $("#porcent-2").html(`${porcentage[1]}%`);
+        $("#matchesPlayed").html("Games played: " + matches.length);
+
+        winScreenToggle();
+        areaUnbindClick();
+    };
+    //#endregion
+
+    //#region Matches in localStorage
+    function localMatches(playing){
         let matches = new Array();
-        let one = 0;
-        let two = 0;
 
         if(localStorage.hasOwnProperty("matches")){
             matches = JSON.parse(localStorage.getItem("matches"));
@@ -87,78 +111,63 @@ $(function(){
         matches.push({Winner: playing, Loser: players[playing]["Next"]});
         localStorage.setItem("matches", JSON.stringify(matches));
 
-        for(let i = 0; i < matches.length; i++){
-            if(matches[i]["Winner"] == "One"){
+        return matches;
+    };
+    //#endregion
+
+    //#region Calculating the percentage of each player
+    function calcPercentage(matches){
+        let one = 0, two = 0;
+        let percentage = new Array;
+
+        matches.forEach(match => {
+            if(match["Winner"] == "One"){
                 one++;
             }
             else{
                 two++;
             }
-        }
+        });
 
-        one = ((100 * one) / matches.length).toFixed(1);
-        two = ((100 * two) / matches.length).toFixed(1);
+        percentage.push(((100 * one) / matches.length).toFixed(1));
+        percentage.push(((100 * two) / matches.length).toFixed(1));
 
-        $("#finishTitle").html(finishText);        
-        $("#bar-1").css("width", one + "%");
-        $("#bar-2").css("width", two + "%");
-        $("#porcent-1").html(one + "%");
-        $("#porcent-2").html(two + "%");
-        $("#matchesPlayed").html("Games played: " + matches.length);
-        winScreen("50vw", "20px", 0);
-        clear(false);
-    }
+        return percentage;
+    };
+    //#endregion
 
-    //The end
-    $("#end").click(function(){
-        state = false;
-        clear(true);
+    //#region Toggle the win screen
+    function winScreenToggle(){
+        $("#winBack").fadeToggle()
+        $("#win").animate({width:'toggle'},350).css("display", "flex");
+    };
+    //#endregion
 
-        $("#end").addClass("off");
-        $("#start").removeClass("off");
+    //#region Close the win screen
+    $("#winBack").click(function(){
+        winScreenToggle();
     });
+    //#endregion
 
-    //Clear
-    function clear(pst){
-        $("#title").html("# Hash Game");
-
+    //#region Unbind the click events in area
+    function areaUnbindClick(){
         for(let x = 0; x < blocks.length; x++){
             for(let y = 0; y < blocks.length; y++){
-                let id = `#${blocks[x][y]}`;
                 positions[x][y] = "";
 
-                $(id).unbind("click");
-                $(id).removeClass("hand");
-
-                if(pst == true){
-                    $(id).html("");
-                }
+                $(`#${blocks[x][y]}`).unbind("click").css("cursor", "default");
             }
         }
     }
+    //#endregion
 
-    //Disappear
-    $("#winBack").click(function(){
-        winScreen("0%", "0px", 400);
-    });
-
-    //Win Screen
-    function winScreen(widthVal, paddingVal, time){
-        if(widthVal == "0%"){
-            $("#winBack").fadeOut();
-            
+    //#region Clear area of game
+    function areaClear(){
+        for(let x = 0; x < blocks.length; x++){
+            for(let y = 0; y < blocks.length; y++){
+                $(`#${blocks[x][y]}`).html("");
+            }
         }
-        else{
-            $("#winBack").fadeIn();
-            $("#win").removeClass("off");
-        }
-
-        setTimeout(function(){
-            $("#win").css("width", widthVal);
-            
-            setTimeout(function(){
-                $("#win").css("padding", paddingVal);
-            }, time);            
-        }, time);
-    }
+    };
+    //#endregion
 });
