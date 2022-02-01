@@ -1,5 +1,5 @@
 #buttons{
-    width: 55vh;
+    width: 50vh;
 
     button{
         background-color: transparent;
@@ -13,6 +13,8 @@
         border-style: solid;
         border-color: $neutralColor;
 
+        cursor: pointer;
+
         transition: background-color 0.5s, color 0.5s;
 
         &:hover{
@@ -22,6 +24,14 @@
 
         @include roundedBorder();
     }
+
+    #end{
+        display: none;
+    }
     
     @include flex(center, center, column);
+
+    @media screen and (max-width: 415px){
+        width: 85vw;
+    }
 }

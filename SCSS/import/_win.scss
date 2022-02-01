@@ -7,14 +7,21 @@
     position: fixed;
     top: 0;
     left: 0;
+
+    cursor: pointer;
 }
 
 #win{
     background-color: $neutralColor;
-    width: 0vw;
+    width: 50vw;
     height: 100vh;
 
-    padding: 0px;
+    padding: 3%;
+
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
 
     position: fixed;
     top: 0px;
@@ -23,23 +30,13 @@
     text-align: center;
     color: $darkColor;
 
-    transition: width 0.5s;
-
-    h1{
-        margin: 5vh 0px 10vh 0px;
-    }
-
-    .title{
-        margin: 15vh 0px 0px 0px;
-    }
-
     #rateArea{
         width: 100%;
 
         h1{
             width: 100%;
 
-            font-size: 1.5em;
+            font-size: 1.3em;
         }
 
         #text{

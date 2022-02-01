@@ -1,8 +1,6 @@
 #area{
-    width: 55vh;
-    height: 55vh;
-
-    margin: 5% 0px 5% 0px;
+    width: 50vh;
+    height: 50vh;
 
     @mixin borderGame($top, $right, $bot, $left){
         border-color: $neutralColor;
@@ -50,5 +48,10 @@
         }
 
         @include flex(none, center, row);
+    }
+
+    @media screen and (max-width: 415px){
+        width: 85vw;
+        height: 85vw;
     }
 }

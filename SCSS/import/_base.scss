@@ -21,7 +21,11 @@ body{
 
     cursor: default;
 
-    @include flex(center, center, column);
+    h1{
+        margin: 0px 7.5% 0px 7.5%;
+    }
+
+    @include flex(space-evenly, center, column);
 }
 
 //Class
