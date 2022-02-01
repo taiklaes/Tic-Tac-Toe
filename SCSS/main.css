@@ -101,6 +101,16 @@ body h1 {
   color: #1c202b;
 }
 
+#win svg {
+  width: 30px;
+  display: none;
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  fill: #1c202b;
+  cursor: pointer;
+}
+
 #win #rateArea {
   width: 100%;
   display: -webkit-box;
@@ -130,11 +140,11 @@ body h1 {
 }
 
 #win #rateArea #porcents {
-  width: 10%;
+  width: 15%;
 }
 
 #win #rateArea #bars {
-  width: calc(70% - 20px);
+  width: calc(65% - 20px);
   margin: 0px 10px 0px 10px;
 }
 
@@ -155,6 +165,21 @@ body h1 {
 
 #win #rateArea h1, #win #rateArea #bars div {
   margin: 30px 0px 0px 0px;
+}
+
+@media screen and (max-width: 900px) {
+  #win {
+    width: 70vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #win {
+    width: 100vw;
+  }
+  #win svg {
+    display: block;
+  }
 }
 
 #area {

@@ -30,6 +30,19 @@
     text-align: center;
     color: $darkColor;
 
+    svg{
+        width: 30px;
+
+        display: none;
+        position: fixed;
+        top: 3%;
+        right: 3%;
+
+        fill: $darkColor;
+
+        cursor: pointer;
+    }
+
     #rateArea{
         width: 100%;
 
@@ -44,12 +57,12 @@
         }
         
         #porcents{
-            width: 10%;
+            width: 15%;
         }
 
         #bars
         {
-            width: calc(70% - 20px);
+            width: calc(65% - 20px);
             margin: 0px 10px 0px 10px;
 
             div{
@@ -72,5 +85,17 @@
         }
 
         @include flex(center, center, row);
+    }
+
+    @media screen and (max-width: 900px) {
+        width: 70vw;
+    }
+
+    @media screen and (max-width: 600px){
+        width: 100vw;
+
+        svg{
+            display: block;
+        }
     }
 }

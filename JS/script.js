@@ -147,6 +147,10 @@ $(function(){
     $("#winBack").click(function(){
         winScreenToggle();
     });
+
+    $("#close").click(function(){
+        winScreenToggle();
+    });
     //#endregion
 
     //#region Unbind the click events in area
