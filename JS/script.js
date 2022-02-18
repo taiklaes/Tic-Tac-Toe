@@ -25,10 +25,10 @@ $(function(){
                         positions[x][y] = players[playing]["Text"];
 
                         if(itsOver(players[playing]["Text"]) == true){
-                            finish(playing, `Player <strong class="player-${players[playing]["Id"]}">${playing}</strong> you are the winner!!`);
+                            finish(playing, `Player <strong class="player-${players[playing]["Id"]}">${playing}</strong> you are the winner!!`, false);
                         }
                         else if(itsOver(players[playing]["Text"]) == "tied"){
-                            finish(playing, `It tied but next time one of you will win!!`);
+                            finish(playing, `It tied but next time one of you will win!!`, true);
                         }
             
                         $("#title").html(`Player <strong class="player-${players[playing]["NextId"]}">${players[playing]["Next"]}</strong> it's your time!`);
@@ -85,14 +85,23 @@ $(function(){
     //#endregion
 
     //#region Finishing the match
-    function finish(playing, finishText){
-        let matches = localMatches(playing), porcentage = calcPercentage(matches);
+    function finish(playing, finishText, tied){
+        let matches = localMatches(playing, tied), porcentage = calcPercentage(matches);
+
+        if(matches.length > 0){
+            $("#bar-1").css("width", `${porcentage[0]}%`);
+            $("#bar-2").css("width", `${porcentage[1]}%`);
+            $("#porcent-1").html(`${porcentage[0]}%`);
+            $("#porcent-2").html(`${porcentage[1]}%`);
+        }
+        else{
+            $("#bar-1").css("width", `0%`);
+            $("#bar-2").css("width", `0%`);
+            $("#porcent-1").html(`0%`);
+            $("#porcent-2").html(`0%`);
+        }
 
         $("#finishTitle").html(finishText);
-        $("#bar-1").css("width", `${porcentage[0]}%`);
-        $("#bar-2").css("width", `${porcentage[1]}%`);
-        $("#porcent-1").html(`${porcentage[0]}%`);
-        $("#porcent-2").html(`${porcentage[1]}%`);
         $("#matchesPlayed").html("Games played: " + matches.length);
 
         winScreenToggle();
@@ -101,15 +110,17 @@ $(function(){
     //#endregion
 
     //#region Matches in localStorage
-    function localMatches(playing){
+    function localMatches(playing, tied){
         let matches = new Array();
 
         if(localStorage.hasOwnProperty("matches")){
             matches = JSON.parse(localStorage.getItem("matches"));
         }
     
-        matches.push({Winner: playing, Loser: players[playing]["Next"]});
-        localStorage.setItem("matches", JSON.stringify(matches));
+        if(tied != true){
+            matches.push({Winner: playing, Loser: players[playing]["Next"]});
+            localStorage.setItem("matches", JSON.stringify(matches));
+        }
 
         return matches;
     };
