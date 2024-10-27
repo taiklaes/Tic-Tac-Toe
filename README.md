@@ -13,5 +13,5 @@
   <br/><br/>
 
 ## ⚙️ How to use
-  1. Acess https://gabls.github.io/Tic-Tac-Toe/
+  1. Acess https://taiklaes.github.io/Tic-Tac-Toe/
   2. Click in "Start!" and have fun!!
